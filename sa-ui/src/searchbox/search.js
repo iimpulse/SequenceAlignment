@@ -20,8 +20,8 @@ class Search extends Component {
     buttonClick() {
         console.log(this.state.seq1);
         console.log(this.state.seq2);
-        axios.get("http://jsonplaceholder.typicode.com/posts/42")
-            .then(response => this.setState({aligned:response}));
+        axios.get("http://localhost:5000/align?seq1=" + this.state.seq1 + "&seq2=" + this.state.seq2)
+            .then(response => this.setState({aligned:response.data}));
     }
 
     updateSeq1(event) {

@@ -1,9 +1,10 @@
 #!/usr/bin/python
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from .aligner import Aligner
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/align')
 def align():

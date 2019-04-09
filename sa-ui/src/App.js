@@ -12,7 +12,7 @@ class App extends Component {
             <main>
                 <div className="introduction">
                     <h2 className="title">Hirschberg's algorithm</h2>
-                    <p>Compare two sequences by entering them below and hitting submit!</p>
+                    <p>Compare two sequences by entering them below and hitting compare!</p>
                 </div>
                 <Search/>
             </main>
