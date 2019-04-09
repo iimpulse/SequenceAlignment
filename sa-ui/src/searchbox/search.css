@@ -2,6 +2,8 @@
     width: inherit;
     margin: 25px 0 25px 0;
     height: 45px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .compare-icon {
