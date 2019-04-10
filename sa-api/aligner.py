@@ -5,8 +5,8 @@ class Aligner:
     """
 
     def __init__(self, seq1, seq2, match, mismatch, gap):
-        self.first_seq = seq1
-        self.second_seq = seq2
+        self.first_seq = seq1.upper()
+        self.second_seq = seq2.upper()
         cols = len(self.first_seq) + 1
         rows = len(self.second_seq) + 1
         self.match = 1 if match is None else match
@@ -60,6 +60,8 @@ class Aligner:
     def find_optimal_alignments(self):
         alignment_a = ""
         alignment_b = ""
+        alignment_spacer = ""
+        path = []
         i = len(self.first_seq)
         k = len(self.second_seq)
         score = 0
@@ -69,7 +71,9 @@ class Aligner:
             if i > 0 and k > 0 and matrix[k][i] == matrix[k - 1][i - 1] + self.score(self.first_seq[i - 1], self.second_seq[k - 1]):
                 alignment_a = self.first_seq[i - 1] + alignment_a
                 alignment_b = self.second_seq[k - 1] + alignment_b
-                score += self.score(self.first_seq[i - 1], self.second_seq[k - 1])
+                match = self.score(self.first_seq[i - 1], self.second_seq[k - 1])
+                path.append(0)
+                score += match
                 i -= 1
                 k -= 1
 
@@ -79,6 +83,7 @@ class Aligner:
                 alignment_a = "-" + alignment_a
                 alignment_b = self.second_seq[k - 1] + alignment_b
                 score = score - 1
+                path.append(1)
                 k -= 1
 
             # Left
@@ -86,6 +91,9 @@ class Aligner:
                 alignment_a = self.first_seq[i - 1] + alignment_a
                 alignment_b = "-" + alignment_b
                 score = score - 1
+                path.append(2)
                 i -= 1
 
-        return {"alignment_a": alignment_a, "alignment_b": alignment_b, "score": score}
+        return {"alignment_a": alignment_a, "alignment_b": alignment_b,
+                "score": score, "matrix": self.fscore,
+                "path": path, "seq1": self.first_seq, "seq2": self.second_seq}

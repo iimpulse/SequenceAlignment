@@ -4,8 +4,8 @@ import axios from 'axios';
 
 class Search extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             aligned:{},
             seq1: '',
@@ -18,10 +18,8 @@ class Search extends Component {
     }
 
     buttonClick() {
-        console.log(this.state.seq1);
-        console.log(this.state.seq2);
         axios.get("http://localhost:5000/align?seq1=" + this.state.seq1 + "&seq2=" + this.state.seq2)
-            .then(response => this.setState({aligned:response.data}));
+            .then(response => this.props.data({aligned:response.data}));
     }
 
     updateSeq1(event) {
@@ -37,14 +35,13 @@ class Search extends Component {
             <React.Fragment>
                <div className="search-container">
                    <div className="offset-lg-4 col-lg-4">
-                        <input type="text" onChange={this.updateSeq1} name="sequence1" className="seq1" />
+                        <input type="text" onChange={this.updateSeq1} name="sequence1" className="seq1"/>
                    </div>
                    <span className="fas fa-retweet center compare-icon">&nbsp;</span>
                    <div className="offset-lg-4 col-lg-4">
-                       <input type="text" onChange={this.updateSeq2} name="sequence1" className="seq2" />
+                       <input type="text" onChange={this.updateSeq2} name="sequence1" className="seq2"/>
                    </div>
                    <button className="btn compare-btn" onClick={this.buttonClick}>Compare</button>
-                   <p>{JSON.stringify(this.state.aligned)}</p>
                </div>
             </React.Fragment>
         );
