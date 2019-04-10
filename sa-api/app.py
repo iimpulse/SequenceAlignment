@@ -10,9 +10,10 @@ CORS(app)
 def align():
     seq_one = request.args.get('seq1')
     seq_two = request.args.get('seq2')
-    match = request.args.get('match')
-    mismatch = request.args.get('mismatch')
-    gap = request.args.get('gap')
+    match =  int(request.args.get('match'))
+    mismatch = int(request.args.get('mismatch'))
+    gap = int(request.args.get('gap'))
+
     aligner = Aligner(seq_one, seq_two, match, mismatch, gap)
 
     return jsonify(aligner.find_optimal_alignments())

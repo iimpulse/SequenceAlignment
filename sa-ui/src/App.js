@@ -26,7 +26,6 @@ class App extends Component {
               alignmentb.unshift(' ');
 
               alignmenta = aligned.seq2.split('');
-              console.log(alignmenta);
               rows = aligned.matrix.map((row, i) => {
                   if(i === 0){
                       row.unshift(' ');
@@ -40,6 +39,7 @@ class App extends Component {
 
               containerGrid =
                 <table cellPadding="10" className="pure-table">
+                    <tbody>
                     <tr>
                         {alignmentb.map((object, i) => { return <th>{object}</th>})}
                     </tr>
@@ -48,12 +48,13 @@ class App extends Component {
                             {obj.map((item, i) => { return <td>{item}</td>})}
                         </tr>
                     })}
+                    </tbody>
                 </table>;
 
             containerAlignment =
                 <div className="output">
                     <div className="alignment-section">
-                        <h3 className="section-header">Alignment</h3>
+                        <h3 className="section-header">Optimal Alignment</h3>
                         <div className="section">
                             <h4 className="aligned">{aligned.alignment_a}</h4>
                             <h4 className="aligned">{aligned.alignment_b}</h4>
