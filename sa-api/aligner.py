@@ -5,8 +5,8 @@ class Aligner:
     """
 
     def __init__(self, seq1, seq2, match, mismatch, gap):
-        self.first_seq = seq1.upper()
-        self.second_seq = seq2.upper()
+        self.first_seq = seq1.strip().upper()
+        self.second_seq = seq2.strip().upper()
         cols = len(self.first_seq) + 1
         rows = len(self.second_seq) + 1
         self.match = 1 if match is None else match
@@ -60,10 +60,9 @@ class Aligner:
     def find_optimal_alignments(self):
         alignment_a = ""
         alignment_b = ""
-        alignment_spacer = ""
-        path = []
         i = len(self.first_seq)
         k = len(self.second_seq)
+        path =  {str(x): [] for x in range(0, k)}
         score = 0
         matrix = self.fscore
         while i > 0 or k > 0:
@@ -72,7 +71,6 @@ class Aligner:
                 alignment_a = self.first_seq[i - 1] + alignment_a
                 alignment_b = self.second_seq[k - 1] + alignment_b
                 match = self.score(self.first_seq[i - 1], self.second_seq[k - 1])
-                path.append(0)
                 score += match
                 i -= 1
                 k -= 1
@@ -83,7 +81,6 @@ class Aligner:
                 alignment_a = "-" + alignment_a
                 alignment_b = self.second_seq[k - 1] + alignment_b
                 score = score - 1
-                path.append(1)
                 k -= 1
 
             # Left
@@ -91,8 +88,8 @@ class Aligner:
                 alignment_a = self.first_seq[i - 1] + alignment_a
                 alignment_b = "-" + alignment_b
                 score = score - 1
-                path.append(2)
                 i -= 1
+            path[str(k)].append(i)
 
         return {"alignment_a": alignment_a, "alignment_b": alignment_b,
                 "score": score, "matrix": self.fscore,

@@ -95,3 +95,8 @@ main {
 .output .alignment-section .section, .output .grid-section .section {
   margin-top: 25px;
 }
+
+.highlight {
+  background-color: #930000 !important;
+  color: white;
+}
