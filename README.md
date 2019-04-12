@@ -1,8 +1,11 @@
 # SequenceAlignment
-Northeastern Directed Study
+Northeastern Directed Study project to build a full-stack web application for Needleman–Wunsch pairwise sequence alignment that produces one of the optimal sequence alignment.
 
-This repository contains the directories. 
+# sa - ui
+Javascript <br>
+React
 
-### One the front-end react application that serves as the interface for sequence alignment
-### Second the python class for calculating sequence alignment using Hirschberg's algorithm
-### Third the python flask rest-api
+# sa-api
+Python <br>
+Flask <br>
+Aligner.py - Needleman–Wunsch algorithm for two sequences
