@@ -1,0 +1,32 @@
+.seq1, .seq2 {
+    width: inherit;
+    margin: 25px 0 25px 0;
+    height: 45px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.compare-icon {
+    font-size: 16px;
+    margin-left: 42%;
+}
+
+.compare-btn {
+    background-color: rgba(130,6,5,1);
+    color: white;
+    width: 250px;
+    margin-left: 43%;
+}
+
+.compare-btn:hover {
+    opacity: 0.6;
+    color: white;
+}
+
+.select-label {
+    margin-right: 5px;
+}
+
+.select-box {
+    margin-right: 10px;
+}
