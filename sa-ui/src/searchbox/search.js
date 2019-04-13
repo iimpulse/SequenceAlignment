@@ -67,7 +67,7 @@ class Search extends Component {
                        <option>5</option>
 
                    </select>
-                   <span className="select-label">Mistmatch</span>
+                   <span className="select-label">Mismatch</span>
                    <select onChange={this.updateMisMatch} className="select-box">
                        <option selected="selected">-1</option>
                        <option>-2</option>
