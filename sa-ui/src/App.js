@@ -37,43 +37,34 @@ class App extends Component {
               });
 
               let generateGrid = function() {
+                  console.log(rows);
                   let rowLen = rows.length - 1;
                   return rows.map((obj, i) => {
+
+                      /*
                       if(i === 0){
-                          let colorCell = 1;
-                          return <tr>
-                              {obj.map((item, i) => {
-                                  if(i === colorCell){
-                                      return <td className="highlight">{item}</td>
-                                  }
-                                  return <td>{item}</td>
-                              })}
-                          </tr>
-                      } else if(i === rowLen){
-                          let colorCell = obj.length - 1;
-                          return <tr>
-                              {obj.map((item, i) => {
-                                  if(i === colorCell){
-                                      return <td className="highlight">{item}</td>
-                                  }
-                                  return <td>{item}</td>
-                              })}
-                          </tr>
-                      } else {
                           let colorCell = aligned.path[i].sort();
                           return <tr>
                               {obj.map((item, i) => {
-                                  if(i === colorCell[0] + 1){
-                                      colorCell.shift();
+                                  if(i === colorCell){
                                       return <td className="highlight">{item}</td>
                                   }
                                   return <td>{item}</td>
-                              })
-                              }
+                              })}
                           </tr>
-
-                      }
-
+                       */
+                      // Color the last cell no matter what
+                      let colorCell = aligned.path[i].sort();
+                      return <tr>
+                          {obj.map((item, i) => {
+                              if(i === colorCell[0] + 1){
+                                  colorCell.shift();
+                                  return <td className="highlight">{item}</td>
+                              }
+                              return <td>{item}</td>
+                          })
+                          }
+                      </tr>
                   })
 
               };

@@ -61,6 +61,7 @@ main {
 .aligned {
   text-transform: uppercase;
   letter-spacing: 15px;
+  font-family: monospace;
 }
 
 .aligned-spacers {
@@ -69,27 +70,37 @@ main {
 }
 
 .output {
-  margin: 50px;
   box-shadow: 1px 1px 5px 0 grey;
+  margin: 25px auto;
+  width: fit-content;
+  display: table;
+  padding: 25px;
 }
+
 .output .alignment-section .section-header,  .output .grid-section .section-header {
   padding: 25px 0 15px 0;
   border-bottom: 1px solid #c54e4e;
 }
 
 .output .alignment-section {
-  margin-left: 5%;
-  width: 20%;
-  display: inline-block;
-  float: left
+    margin: 0 auto;
 }
 
 .output .grid-section {
-    margin-right: 10%;
-    float: right;
-    width: 35%;
-    display: inline-block;
-    margin-bottom: 25px;
+    margin: 0 auto;
+    display: table;
+}
+
+.output .grid-section h3 {
+  text-align: center;
+}
+
+.output .alignment-section h3 {
+  text-align: center;
+}
+
+.output .alignment-section .section {
+  text-align: center;
 }
 
 .output .alignment-section .section, .output .grid-section .section {

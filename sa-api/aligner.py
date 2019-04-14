@@ -62,10 +62,15 @@ class Aligner:
         alignment_b = ""
         i = len(self.first_seq)
         k = len(self.second_seq)
-        path =  {str(x): [] for x in range(0, k)}
+        path =  {str(x): [] for x in range(0, k + 1)}
         score = 0
         matrix = self.fscore
-        while i > 0 or k > 0:
+        flag = 1
+        while i > 0 and k > 0:
+
+            if flag == 1:
+                path[str(k)].append(i)
+                flag -= 1
             # Top-Left
             if i > 0 and k > 0 and matrix[k][i] == matrix[k - 1][i - 1] + self.score(self.first_seq[i - 1], self.second_seq[k - 1]):
                 alignment_a = self.first_seq[i - 1] + alignment_a
@@ -90,6 +95,19 @@ class Aligner:
                 score = score - 1
                 i -= 1
             path[str(k)].append(i)
+
+
+        while k > 0:
+            alignment_a = "-" + alignment_a
+            alignment_b = self.second_seq[k - 1] + alignment_b
+            k -= 1
+            path[str(k)].append(i)
+        while i > 0:
+            alignment_a = self.first_seq[i - 1] + alignment_a
+            alignment_b = "-" + alignment_b
+            i -= 1
+            path[str(k)].append(i)
+
 
         return {"alignment_a": alignment_a, "alignment_b": alignment_b,
                 "score": score, "matrix": self.fscore,
